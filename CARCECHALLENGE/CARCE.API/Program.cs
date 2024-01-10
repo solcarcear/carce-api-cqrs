@@ -1,4 +1,6 @@
 using CARCE.API;
+using CARCE.Application;
+using CARCE.Infrastructure;
 
 internal class Program
 {
@@ -7,9 +9,9 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
         {
             builder.Services
-                .AddPresentation();
-                //.AddApplication()
-                //.AddInfrastructure(builder.Configuration);
+                .AddPresentation()
+                .AddApplication()
+                .AddInfrastructure();
         }
 
         // Configure the HTTP request pipeline.
