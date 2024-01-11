@@ -1,21 +1,33 @@
-﻿using CARCE.Application.Interfaces;
-using CARCE.Domain.Product;
+﻿using CARCE.Application.Dtos;
+using CARCE.Application.Interfaces;
 
 namespace CARCE.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        public Task AddAsync(Product product)
+        private readonly MyDbContext _dbContext;
+
+        public ProductRepository(MyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public Task AddAsync(ProductDto product)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetByIdAsync(int productId)
+        public Task<ProductDto> GetByIdAsync(int productId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Product>> ListAsync()
+        public Task<List<ProductDto>> ListAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(ProductDto product)
         {
             throw new NotImplementedException();
         }

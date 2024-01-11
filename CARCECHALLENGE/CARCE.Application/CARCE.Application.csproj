@@ -15,9 +15,4 @@
     <ProjectReference Include="..\CARCE.Domain\CARCE.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Products\Commands\Handlers\" />
-    <Folder Include="Products\Queries\Handlers\" />
-  </ItemGroup>
-
 </Project>

@@ -1,11 +1,12 @@
-﻿using CARCE.Domain.Product;
+﻿using CARCE.Application.Dtos;
 
 namespace CARCE.Application.Interfaces
 {
     public interface IProductRepository
     {
-        Task AddAsync(Product product);
-        Task<List<Product>> ListAsync();
-        Task<Product> GetByIdAsync(int productId);
+        Task AddAsync(ProductDto product);
+        Task UpdateAsync(ProductDto product);
+        Task<List<ProductDto>> ListAsync();
+        Task<ProductDto> GetByIdAsync(int productId);
     }
 }

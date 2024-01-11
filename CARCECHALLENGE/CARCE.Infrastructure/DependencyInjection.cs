@@ -8,6 +8,7 @@ namespace CARCE.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddSingleton<MyDbContext>();
             return services;
         }
     }

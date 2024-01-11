@@ -3,11 +3,11 @@ using CARCE.Domain.Product;
 
 namespace CARCE.Infrastructure
 {
-    public class DbContext
+    public class MyDbContext
     {
         private static List<Product> _products = new();
 
-        DbContext()
+        MyDbContext()
         {
 
             _products.Add(Product.Create(1,"Product 1",1,10,"",100,3));
