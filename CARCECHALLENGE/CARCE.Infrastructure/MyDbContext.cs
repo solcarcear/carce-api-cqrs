@@ -7,7 +7,7 @@ namespace CARCE.Infrastructure
     {
         private static List<Product> _products = new();
 
-        MyDbContext()
+        public MyDbContext()
         {
 
             _products.Add(Product.Create(1,"Product 1",1,10,"",100,3));
@@ -37,7 +37,7 @@ namespace CARCE.Infrastructure
         }
 
 
-        public async Task AddProductAsync(ProductDto product) {
+        public async Task<ProductDto> AddProductAsync(ProductDto product) {
             var idGenerated = _products.Max(x => x.ProductId)+1;
             _products.Add(Product.Create(idGenerated,
                 product.Name,
@@ -46,10 +46,10 @@ namespace CARCE.Infrastructure
                 product.Description,
                 product.Price,
                 product.Category));
-            await Task.CompletedTask;
+            return product;
         }
 
-        public async Task UpdateProductAsync(ProductDto product)
+        public async Task<ProductDto> UpdateProductAsync(ProductDto product)
         {
             var productPersisted = await GetProductById(product.ProductId);
 
@@ -61,13 +61,13 @@ namespace CARCE.Infrastructure
                 product.Price,
                 product.Category);
 
-            await Task.CompletedTask;
+            return product; 
         }
 
         public async Task<IEnumerable<Product>> GetAllProducts() => await Task.FromResult(_products);
 
         public async Task<Product> GetProductById(int id) =>
-            await Task.FromResult(_products.Single(p => p.ProductId == id));
+            await Task.FromResult(_products.First(p => p.ProductId == id));
 
 
 

@@ -1,5 +1,6 @@
 ﻿using CARCE.Application.Dtos;
 using CARCE.Application.Interfaces;
+using CARCE.Domain.Product;
 
 namespace CARCE.Infrastructure.Repositories
 {
@@ -12,24 +13,46 @@ namespace CARCE.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<ProductDto> AddAsync(ProductDto product)
+        public async Task<ProductDto> AddAsync(ProductDto product)
         {
-            throw new NotImplementedException();
+            return  await _dbContext.AddProductAsync(product);
         }
 
-        public Task<ProductDto> GetByIdAsync(int productId)
+        public async Task<ProductDto> GetByIdAsync(int productId)
         {
-            throw new NotImplementedException();
+            var result= await _dbContext.GetProductById(productId);
+
+            return new ProductDto { 
+                ProductId = productId,
+                Name = result.Name,
+                Description = result.Description,
+                Price = result.Price,
+                Stock = result.Stock,
+                Category = result.Category,
+                Status = result.Status
+            };
         }
 
-        public Task<List<ProductDto>> ListAsync()
+        public async Task<List<ProductDto>> ListAsync()
         {
-            throw new NotImplementedException();
+            var result = await _dbContext.GetAllProducts();
+
+            return result.Select(p => new ProductDto
+            {
+                ProductId = p.ProductId,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                Stock = p.Stock,
+                Category = p.Category,
+                Status = p.Status
+            }).ToList();
         }
 
-        public Task<ProductDto> UpdateAsync(ProductDto product)
+        public async Task<ProductDto> UpdateAsync(ProductDto product)
         {
-            throw new NotImplementedException();
+            return await _dbContext.UpdateProductAsync(product);
+
         }
     }
 }
