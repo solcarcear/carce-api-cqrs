@@ -13,9 +13,9 @@ namespace CARCE.Application.Products.Commands.Handlers
             _productRepository = productRepository;
         }
 
-        public Task<ProductDto> Handle(AddProductCommand request, CancellationToken cancellationToken)
+        public async Task<ProductDto> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _productRepository.AddAsync(request.Product);
         }
     }
 }

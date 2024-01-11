@@ -12,7 +12,7 @@ namespace CARCE.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public Task AddAsync(ProductDto product)
+        public Task<ProductDto> AddAsync(ProductDto product)
         {
             throw new NotImplementedException();
         }
@@ -27,7 +27,7 @@ namespace CARCE.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(ProductDto product)
+        public Task<ProductDto> UpdateAsync(ProductDto product)
         {
             throw new NotImplementedException();
         }

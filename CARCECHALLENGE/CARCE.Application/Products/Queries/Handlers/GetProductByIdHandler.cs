@@ -13,9 +13,11 @@ namespace CARCE.Application.Products.Queries.Handlers
             _productRepository = productRepository;
         }
 
-        public Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _productRepository.GetByIdAsync(request.Id);
+
+
         }
     }
 }
