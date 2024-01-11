@@ -11,6 +11,7 @@
             // Add swagger settings
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddLazyCache();
             return services;
         }
     }

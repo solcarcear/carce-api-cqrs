@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace CARCE.Domain.Enum
+namespace CARCE.Application.Enum
 {
     public enum Status
     {

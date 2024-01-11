@@ -12,5 +12,9 @@
         public int Discount { get; set; }
         public decimal FinalPrice => (Price * (100 - Discount)) / 100;
 
+        public string? StatusName { get; set; }
+        public string? CategoryName { get; set; }
+
+
     }
 }

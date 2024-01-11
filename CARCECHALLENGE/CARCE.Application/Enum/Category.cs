@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace CARCE.Domain.Product
+namespace CARCE.Application.Product
 {
     public enum Category
     {

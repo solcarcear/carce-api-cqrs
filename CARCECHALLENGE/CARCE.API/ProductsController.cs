@@ -1,6 +1,8 @@
 ﻿using CARCE.Application.Dtos;
+using CARCE.Application.Enum;
 using CARCE.Application.Products.Commands;
 using CARCE.Application.Products.Queries;
+using LazyCache;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +13,13 @@ namespace CARCE.API
     public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IAppCache _appCache;
 
-        public ProductsController(IMediator mediator) => _mediator = mediator;
+        public ProductsController(IMediator mediator, IAppCache appCache)
+        {
+            _mediator = mediator;
+            _appCache = appCache;
+        }
 
         [HttpGet]
         public async Task<ActionResult> GetProducts()
@@ -33,6 +40,16 @@ namespace CARCE.API
             if (product is null) { 
                 return NotFound($"Not found product:{id}");
             }
+
+
+            var statusDicctionary = new Dictionary<string,int>
+            {
+                { Status.Inactive.ToString(), (int)Status.Inactive },
+                { Status.Active.ToString(), (int)Status.Active }
+            };
+            var statusCache= _appCache.GetOrAdd("statusDicctionary", () => statusDicctionary, TimeSpan.FromMinutes(5));  
+
+            product.StatusName = statusCache.Keys.ElementAt(product.Status).ToString(); 
 
             return Ok(product);
         }
