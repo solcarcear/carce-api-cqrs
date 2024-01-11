@@ -27,8 +27,19 @@
             return new Product(productId,name,status,stock,description,price,category);
         }
 
+        public static Product Update(Product product, string name, int status, int stock, string description, decimal price, int category)
+        {
+            product.Name = name;
+            product.Status = status;
+            product.Stock = stock;
+            product.Description = description;
+            product.Price = price;
+            product.Category = category;
+            return product;
+        }
 
-      
+
+
 
     }
 }

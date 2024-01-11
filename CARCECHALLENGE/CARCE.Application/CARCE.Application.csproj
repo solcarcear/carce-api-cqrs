@@ -13,7 +13,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CARCE.Domain\CARCE.Domain.csproj" />
-    <ProjectReference Include="..\CARCE.Infrastructure\CARCE.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Products\Commands\Handlers\" />
+    <Folder Include="Products\Queries\Handlers\" />
   </ItemGroup>
 
 </Project>
