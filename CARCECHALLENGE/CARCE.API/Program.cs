@@ -11,7 +11,7 @@ internal class Program
             builder.Services
                 .AddPresentation()
                 .AddApplication()
-                .AddInfrastructure();
+                .AddInfrastructure(builder.Configuration);
         }
 
         // Configure the HTTP request pipeline.

@@ -1,10 +1,12 @@
 ﻿using CARCE.Application.Dtos;
 using CARCE.Application.Enum;
+using CARCE.Application.Interfaces;
 using CARCE.Application.Products.Commands;
 using CARCE.Application.Products.Queries;
 using LazyCache;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.WebSockets;
 
 namespace CARCE.API
 {
@@ -14,11 +16,13 @@ namespace CARCE.API
     {
         private readonly IMediator _mediator;
         private readonly IAppCache _appCache;
+        private readonly IDiscountService _discountService;
 
-        public ProductsController(IMediator mediator, IAppCache appCache)
+        public ProductsController(IMediator mediator, IAppCache appCache, IDiscountService discountService)
         {
             _mediator = mediator;
             _appCache = appCache;
+            _discountService = discountService;
         }
 
         [HttpGet]
@@ -49,7 +53,18 @@ namespace CARCE.API
             };
             var statusCache= _appCache.GetOrAdd("statusDicctionary", () => statusDicctionary, TimeSpan.FromMinutes(5));  
 
-            product.StatusName = statusCache.Keys.ElementAt(product.Status).ToString(); 
+            product.StatusName = statusCache.Keys.ElementAt(product.Status).ToString();
+
+
+            var discount = await _discountService.GetDiscountByProductAsync(product.ProductId);
+
+            if(discount is not null)
+            {
+                product.Discount = discount.discount;
+
+            }
+
+
 
             return Ok(product);
         }
