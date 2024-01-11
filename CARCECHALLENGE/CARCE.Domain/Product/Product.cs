@@ -10,6 +10,8 @@
             Stock = stock;
             Description = description;
             Price = price;
+            Category = category;
+
         }
 
         public int ProductId { get; private set; }
@@ -17,7 +19,7 @@
         public int Status { get; private set; }
         public int Stock { get; private set; }
         public string Description { get; private set; }
-        public Decimal Price { get; private set; }
+        public decimal Price { get; private set; }
         public int Category { get; private set; }
 
 
