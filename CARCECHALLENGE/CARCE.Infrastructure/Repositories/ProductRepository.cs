@@ -21,6 +21,10 @@ namespace CARCE.Infrastructure.Repositories
         public async Task<ProductDto> GetByIdAsync(int productId)
         {
             var result= await _dbContext.GetProductById(productId);
+            if (result is null) {
+                return null;
+            
+            }
 
             return new ProductDto { 
                 ProductId = productId,

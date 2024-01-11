@@ -46,6 +46,7 @@ namespace CARCE.Infrastructure
                 product.Description,
                 product.Price,
                 product.Category));
+            product.ProductId = idGenerated;
             return product;
         }
 
@@ -67,7 +68,7 @@ namespace CARCE.Infrastructure
         public async Task<IEnumerable<Product>> GetAllProducts() => await Task.FromResult(_products);
 
         public async Task<Product> GetProductById(int id) =>
-            await Task.FromResult(_products.First(p => p.ProductId == id));
+            await Task.FromResult(_products.FirstOrDefault(p => p.ProductId == id));
 
 
 

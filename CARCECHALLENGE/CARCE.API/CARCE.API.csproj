@@ -16,4 +16,8 @@
     <ProjectReference Include="..\CARCE.Infrastructure\CARCE.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
